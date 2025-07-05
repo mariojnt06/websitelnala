@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hi Nala - Dari Elnan</title>
+  <style>
+    /* Reset & basic */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #fff0f6;
+      color: #3a0ca3;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(58, 12, 163, 0.15);
+      margin-bottom: 40px;
+    }
+    /* Surat */
+    #letter {
+      white-space: pre-wrap;
+      font-size: 16px;
+      line-height: 1.5;
+      background: #f8e6f0;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #b983ff;
+    }
+    /* Quotes */
+    #quote {
+      font-style: italic;
+      font-size: 18px;
+      margin: 20px auto;
+      max-width: 600px;
+      color: #720026;
+      text-align: center;
+    }
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 20px 0;
+      padding-left: 20px;
+      border-left: 3px solid #720026;
+    }
+    .timeline-item {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -11px;
+      top: 8px;
+      width: 18px;
+      height: 18px;
+      background: #b983ff;
+      border-radius: 50%;
+      border: 3px solid #720026;
+    }
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+      gap: 10px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(58,12,163,0.15);
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+      box-shadow: 0 0 30px #b983ff;
+    }
+    /* Scroll to top */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #720026;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: 0 4px 8px rgba(58,12,163,0.3);
+      display: none;
+      z-index: 10000;
+      transition: background 0.3s ease;
+    }
+    #scrollTopBtn:hover {
+      background: #b983ff;
+      color: #720026;
+    }
+    /* Heart animation */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: #ff3366;
+      clip-path: polygon(
+        50% 0%,
+        61% 11%,
+        68% 20%,
+        75% 32%,
+        79% 44%,
+        80% 56%,
+        79% 68%,
+        72% 80%,
+        65% 86%,
+        58% 90%,
+        50% 100%,
+        42% 90%,
+        35% 86%,
+        28% 80%,
+        21% 68%,
+        20% 56%,
+        21% 44%,
+        25% 32%,
+        32% 20%,
+        39% 11%
+      );
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 5000;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    /* Audio player */
+    audio {
+      display: block;
+      margin: 0 auto 20px auto;
+      outline: none;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(58,12,163,0.3);
+    }
+</head>
+  <head>
+  ...
+  <style>
+    #gallery div {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    #gallery img {
+      width: 45%;
+      max-width: 150px;
+      margin: 10px;
+      border-radius: 10px;
+  </style>
+</head>
+<body>
+
+  <h1>Dari Elnan</h1>
+  <h2>Untuk Nala</h2>
+
+  <div class="container" id="surat-container">
+    <h3>Read This Carefully</h3>
+    <div id="letter">
+Hai, Nala.
+
+Gua gak tau harus mulai dari mana, karena jujur nyusun kata-kata buat lu tuh kayak nulis skripsi tanpa deadline, niat banget tapi selalu penuh rasa.
+
+Kita kenal di dunia yang absurd, dunia RP, tapi siapa sangka dari sana bisa tumbuh temenan yang real dan dalem banget. Udah 2 tahun 5 bulan, dan kita masih disini, masih saling nyambung walau jokes kita kadang udah kayak alien ngobrol tapi ngerti satu sama lain.
+
+Lu itu yapping 24/7, kocak kayak stand-up comedy, dan bocil banget kadang kelakuannya tapi justru itu yang bikin lu beda. Di balik semua kekonyolan itu, lu jadi support system gua, satu-satunya orang setelah bunda yang paling ngedukung gua tanpa banyak nanya, tanpa banyak syarat.
+
+Lu selalu ada. Dalam bentuk tawa, dalam bentuk chat panjang gak penting, atau bahkan dalam bentuk diam yang nyaman. Dan itu semua berarti banget buat gua.
+
+Gua cuma pengen bilang, gua bersyukur banget bisa punya lu sebagai sahabat. Gua pengen kita temenan terus, sampe bener-bener takdir yang misahin kita. Bukan jarak. Bukan waktu. Bukan kesibukan.
+
+Semoga lu selalu bahagia, Nal. Gua doain lu dapet pasangan yang bener-bener pantas buat lu, yang bisa liat lu dari semua sisi yang gua liat dan tetap milih buat stay.
+
+Dari Elnan, orang yang paling ganteng sedunia.
+    </div>
+  </div>
+
+  <div class="container" id="quote-container">
+    <h3>Kata-kata Hari Ini</h3>
+    <div id="quote"></div>
+  </div>
+
+  <div class="container" id="timeline-container">
+    <h3>Timeline Momen Kita</h3>
+    <div class="timeline">
+      <div class="timeline-item"><strong>Februari 2023</strong> — Kenal di dunia RP yang absurd</div>
+      <div class="timeline-item"><strong>Maret 2023</strong> — Mulai nyambung dan becanda gak ada rem</div>
+      <div class="timeline-item"><strong>Juli 2023</strong> — Jadi tempat curhat satu sama lain</div>
+      <div class="timeline-item"><strong>November 2023</strong> — Nala mulai jadi support system utama gua</div>
+      <div class="timeline-item"><strong>Januari-November 2024 s/d Mei 2025</strong> — Sempet canggung dan lost contact</div>
+        <div class="timeline-item"><strong>Mei 2025</strong> — Ketemu lagi untuk kesekian kalinta</div>
+      <div class="timeline-item"><strong>Juli 2025</strong> — Dibikinin website ini sebagai bentuk sayang Elnan ke Nala</div>
+    </div>
+  </div>
+
+  <div class="container" id="gallery-container">
+  <section id="gallery">
+  <h2>Salam Emyu</h2>
+  <div>
+    <img src="foto1.jpg" alt="Us">
+    <img src="foto2.jpg" alt="Us">
+    <img src="foto3.jpg" alt="Us">
+    <img src="foto4.jpg" alt="Us">
+    <img src="foto5.jpg" alt="Us">
+    <img src="foto5.jpg" alt="Us">
+  </div>
+</section>
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <img src="" alt="Lightbox Image" />
+  </div>
+
+  <!-- Audio player -->
+  <audio controls>
+  <source src="music.m4a" type="audio/mpeg">
+  Browser kamu gak support audio.
+</audio>
+
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn" title="Scroll ke atas">↑</button>
+
+  <script>
+    // Quotes array
+    const quotes = [
+      "Sahabat itu bukan yang selalu ngerti, tapi yang tetap stay walau gak ngerti-ngerti banget.",
+      "Kita ketemu secara random, tapi nyambungnya seolah Tuhan sengaja nyusun skripnya.",
+      "Lu boleh yapping 24 jam, tapi jangan pernah ilang, itu baru bikin gua panik.",
+      "Persahabatan kita tuh kayak meme. Absurd, random, tapi bikin hari gua lebih hidup."
+    ];
+
+    // Show random quote
+    const quoteEl = document.getElementById('quote');
+    function showRandomQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      quoteEl.textContent = quotes[randomIndex];
+    }
+    showRandomQuote();
+    setInterval(showRandomQuote, 8000);
+
+    // Lightbox functionality
+    const gallery = document.getElementById('gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+
+    gallery.addEventListener('click', (e) => {
+      if(e.target.tagName === 'IMG'){
+        lightbox.style.display = 'flex';
+        lightboxImg.src = e.target.src;
+        lightboxImg.alt = e.target.alt;
+      }
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+      lightboxImg.alt = '';
+    });
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 300){
+        scrollTopBtn.style.display = 'block';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+
+    // Heart animation generator
+    function createHeart(){
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
